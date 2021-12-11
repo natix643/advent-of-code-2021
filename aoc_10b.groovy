@@ -10,7 +10,7 @@ input = """
 <{([([[(<>()){}]>(<<{{
 <{([{{}}[<[[[<>{}]]]>[]]
 """
-input = new File(/C:\Users\jirka\Downloads\input.txt/)
+//input = new File(/C:\Users\jirka\Downloads\input.txt/)
 lines = input.readLines().findAll()
 
 PAIRS = [
@@ -60,6 +60,4 @@ scores = lines.collect { completeSequence(it) }
         .findAll()
         .collect { score(it) }
         .toSorted()
-println scores.size()
 println scores[scores.size() / 2 as int]
-println scores[25]
