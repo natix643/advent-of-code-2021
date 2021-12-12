@@ -91,7 +91,6 @@ List<Octopus> findNeighbors(Grid grid, Octopus octopus) {
 }
 
 boolean step(Grid grid) {
-    int flashes = 0
     def octopuses = grid.octopuses
     def queue = new ArrayDeque<Octopus>(octopuses)
 
@@ -102,7 +101,6 @@ boolean step(Grid grid) {
                 break
             case 9:
                 next.energy++
-                flashes++
                 queue.addAll(findNeighbors(grid, next))
                 break
             default:
