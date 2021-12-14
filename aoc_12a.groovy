@@ -30,6 +30,7 @@ zg-he
 pj-fs
 start-RW
 """
+
 input = new File(/C:\Users\jirka\Downloads\input.txt/)
 lines = input.readLines().findAll()
 
@@ -61,11 +62,7 @@ class Cave {
 
 class CaveMap {
     Cave start = new Cave('start')
-    Cave end = new Cave('end')
-    Map<String, Cave> caves = [
-            start: start,
-            end  : end
-    ]
+    Map<String, Cave> caves = [start: start]
 
     String toString() {
         caves.values().join("\n")
@@ -102,7 +99,7 @@ class Path {
             !it.start
         }.findAll {
             def visits = history[it] ?: 0
-            it.isBig() || visits < 1
+            it.big || visits < 1
         }
     }
 
@@ -122,7 +119,7 @@ List<Path> findAllPaths(CaveMap map) {
 
     while (!queue.empty) {
         def path = queue.remove()
-        if (path.current == map.end) {
+        if (path.current.end) {
             paths.add(path)
         } else {
             def nextPaths = path.findNextCaves().collect {
