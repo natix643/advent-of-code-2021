@@ -28,9 +28,9 @@ rules = lines.drop(1).collectEntries { line ->
 }
 
 String step(String template) {
-    return template.toList().collate(2, 1, false).collect { first, second ->
-        def toInsert = rules["$first$second"]
-        "$first$toInsert$second"
+    return template.toList().collate(2, 1, false).collect { String first, String second ->
+        def toInsert = rules[first + second]
+        first + toInsert + second
     }.inject { accumulator, next ->
         accumulator + next.substring(1)
     }
